@@ -79,7 +79,7 @@ pipeline {
                 ansiblePlaybook(
                         colorized: true,
                         // TODO 4 On Jenkins (http://jenkins_url:8080/credentials/) create a credentials secret (SSH username with private key) with the provided key
-                        credentialsId: '[credentials-id]',
+                        credentialsId: 'deploy-by-ansible',
                         disableHostKeyChecking: true,
                         // TODO 4 add new image param with image name as value i.e. image=[?]
                         extras: "-e server_ip=${env.SERVER_IP} " +
