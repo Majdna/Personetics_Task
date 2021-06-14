@@ -56,7 +56,7 @@ pipeline {
             agent { label "master" }
             // TODO 3 add a command to save docker image as tar file in the deployment folder
             steps {
-                sh "[write the cmd here]"
+                sh "docker save ${env['IMAGE']} > ./deployment/${env['IMAGE']}.tar"
             }
         }
 
@@ -84,7 +84,7 @@ pipeline {
                         // TODO 4 add new image param with image name as value i.e. image=[?]
                         extras: "-e server_ip=${env.SERVER_IP} " +
                                 "-e project_name=${env.PROJ} " +
-                                "-vvv",
+                                "-e image=${env.["IMAGE"]}",
                         // TODO 4 add ip to inventory file
                         inventory: 'deployment/inventory',
                         playbook: 'deployment/deploy.yml'
